@@ -9,5 +9,4 @@ class AppError extends Error {
 	}
 }
 
-const error = new AppError();
-module.exports = error;
+module.exports = AppError;

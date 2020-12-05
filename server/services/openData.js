@@ -10,6 +10,16 @@ module.exports = {
         return {
             data: res.data,
             status: res.status,
+            resp: res,
+        }
+    },
+    async getData(endpoint) {
+        const res = await axios.get(endpoint);
+
+        return {
+            data: res.data,
+            status: res.status,
+            resp: res,
         }
     }
 }

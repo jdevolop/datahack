@@ -5,6 +5,7 @@ const bodyParser = require('koa-bodyparser');
 const error = require('./error');
 const helmet = require('koa-helmet');
 const cors = require('koa2-cors');
+const jwt = require("./jwt");
 
 const { IS_DEV } = require('../config');
 
@@ -16,5 +17,6 @@ module.exports = (app) => {
     app.use(bodyParser());
     app.use(cors());
     app.use(helmet());
+    app.use(jwt());
 };
 

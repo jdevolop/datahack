@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./server/server.js",
+    "init-tables": "node ./server/modules/db/initTables.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,
@@ -20,11 +21,17 @@
   "homepage": "https://github.com/Shahzodbek2001/datahack#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.12",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-helmet": "^6.0.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.0.0",
-    "koa2-cors": "^2.0.6"
+    "koa2-cors": "^2.0.6",
+    "sqlite3": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
