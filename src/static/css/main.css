@@ -9,6 +9,12 @@ body{
 	width: 100%;
 	height: 100vh;
 }
+.conteiner{
+	width: 100%;
+	max-width: 1300px;
+	margin: 0 auto;
+	height: 100%;
+}
 .index{
 	width: 100%;
 	display: flex;
@@ -59,4 +65,39 @@ a{
 .index__foot_links a:nth-child(2){
 	margin-left: 99px;
 	margin-right: 69px;
+}
+
+
+/*=============================MEDIA============================*/
+
+@media (max-width: 960px) {
+	.index{
+		height: calc(100vh - 255px);
+	}
+	.index__foot{
+		flex-direction: column;
+	}
+	.index__foot_links{
+		flex-direction: column;
+	}
+	.index__foot_links a{
+		margin: 0;
+		margin-bottom: 20px;
+	}
+	.index__foot_links a:nth-child(2){
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.index__foot_links a:first-child{
+		margin-top: 20px;
+	}
+}
+@media (max-width: 500px) {
+	.index__btn{
+		width: 100%;
+	}
+	.index{
+		padding-right: 20px;
+		padding-left: 20px;
+	}
 }
