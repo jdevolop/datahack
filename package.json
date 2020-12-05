@@ -1,0 +1,30 @@
+{
+  "name": "datahack",
+  "version": "1.0.0",
+  "description": "open data challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shahzodbek2001/datahack.git"
+  },
+  "author": "Jamshid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shahzodbek2001/datahack/issues"
+  },
+  "homepage": "https://github.com/Shahzodbek2001/datahack#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^6.0.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.0.0",
+    "koa2-cors": "^2.0.6"
+  }
+}
