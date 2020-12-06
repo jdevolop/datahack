@@ -24,10 +24,10 @@ module.exports = {
             if (!user_.length) {
                 const user = await users.add({ 
                     tg_id, 
-                    first_name: firstname,
-                    last_name: lastname,
-                    username,
-                    photo_url: photourl,
+                    first_name: firstname || '',
+                    last_name: lastname || '',
+                    username: username || '',
+                    photo_url: photourl || '',
                 });
                 const id = user[0];
                 const authToken = jwt.getToken({ id }, { expiresIn: '20h' });
