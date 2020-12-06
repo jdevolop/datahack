@@ -6,7 +6,6 @@ const Users = require("../../users/models/Users");
 const Problems = require("../models/Problems");
 const suggestions = new Suggestions();
 const users = new Users();
-const problems = new Problems();
 
 module.exports = {
     async addSuggestion(ctx) {
@@ -55,7 +54,7 @@ module.exports = {
             id
         } = ctx.request.body;
         try {
-            const sug = await problems.getProblemById(id)
+            const sug = await suggestions.getSuggestionById(id)
             if (sug.length) {
                 const user = await users.getUserDbById(sug[0].user_id);
                 sug[0]['user'] = user[0];
