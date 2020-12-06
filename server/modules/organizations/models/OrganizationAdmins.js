@@ -46,7 +46,7 @@ class OrganizationAdmins {
 
 const oa = new OrganizationAdmins();
 
-// oa.add({organization_id: 1, user_id: 6})
+// oa.add({organization_id: 2, user_id: 6})
 // .then(res=> console.log(res));
 
 module.exports = OrganizationAdmins;

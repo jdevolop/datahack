@@ -48,7 +48,23 @@ class Problems {
 		return await db
 			.select('id', 'description', 'user_id', 'sphere_id')
 			.from(this.table);
-	}
+    }
+    
+    async getProblemsBySphere(sphere_id) {
+		return await db
+			.select('id', 'description', 'user_id', 'sphere_id')
+            .from(this.table)
+			.where({ sphere_id });
+            
+    }
+    
+
+    async getProblemsCountByUsers(sphere_id) {
+        return await db('problems')
+            .count('user_id')
+			.where({ sphere_id })
+
+    }
 }
 
 module.exports = Problems;

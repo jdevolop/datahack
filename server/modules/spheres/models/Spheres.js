@@ -46,5 +46,7 @@ class Spheres {
 
 const sp = new Spheres();
 
+// sp.add({name_ru: "Энергетика", opendata_id: 12})
+// .then(res=> console.log(res));
 
 module.exports = Spheres;

@@ -10,7 +10,7 @@ const IS_DEV = ENV === 'development';
 const IS_PROD = ENV === 'production';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'verydificultth98rt8asr4569g8h43tq42G@#G*$T*hnnj89hH$T@#H(G)H(GV+#+G$$secret';
-
+const BOT_TOKEN = '977865985:AAFfDURpsyy1LaCwLTlp_iDaZjHRiQMxCZk';
 
 module.exports = {
     PORT,
@@ -19,5 +19,6 @@ module.exports = {
     DATA_URL,
     DATA_KEY,
     IS_PROD,
+    BOT_TOKEN,
     ENV,
 };

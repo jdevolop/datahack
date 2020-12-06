@@ -45,7 +45,7 @@ class Organizations {
 
 const org = new Organizations();
 
-// org.add({ name_ru: "Министерство народного образования Республики Узбекистан", sphere_id: 3 })
+// org.add({ name_ru: "Министерство Энергетики Республики Узбекистан", sphere_id: 4 })
 // .then(res=>console.log(res));
 
 module.exports = Organizations;
