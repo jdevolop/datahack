@@ -14,6 +14,6 @@ initHandlers(app);
 
 app.use(modules);
 
-bot.launch();
+// bot.launch();
 
 module.exports = app;
