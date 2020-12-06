@@ -23,7 +23,7 @@ const users = new Users();
 const adminka = new Scene("adminka");
 
 adminka.enter(async ctx => {
-    await ctx.reply("Вы являетесь администратором системы для Министерства Энергетики Республики Узбекистан", Markup
+    await ctx.reply("", Markup
                 .keyboard(
                   ['Обращения населения'], 
                 )
