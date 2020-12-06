@@ -5,18 +5,57 @@ const Telegram = require('telegraf/telegram');
 const Extra = require('telegraf/extra');
 const Markup = require('telegraf/markup');
 const Stage = require('telegraf/stage')
+const Scene = require('telegraf/scenes/base')
 const session = require('telegraf/session');
+const { enter, leave } = Stage;
 
 const { BOT_TOKEN } = require("../config");
 const Problems = require("../modules/problems/models/Problems");
 const Users = require('../modules/users/models/Users');
-const { use } = require('../app');
+const Admins = require("../modules/organizations/models/OrganizationAdmins");
 
+const admins = new Admins();
 const bot = new Telegraf(BOT_TOKEN);
 const problems = new Problems();
 const users = new Users();
 
+
+const adminka = new Scene("adminka");
+
+adminka.enter(async ctx => {
+    await ctx.reply("Вы являетесь администратором системы для Министерства Энергетики Республики Узбекистан", Markup
+                .keyboard(
+                  ['Обращения населения'], 
+                )
+                .oneTime()
+                .resize()
+                .extra()
+    )
+});
+
+adminka.hears('Обращения населения', ctx => {
+    problems.getProblemsBySphere(4)
+        .then(async res => {
+            for (const problem of res) {
+                users.getUserDbById(problem.user_id)
+                    .then(usr => {
+                        let post = `
+От @${usr[0].username}
+                            
+${problem.description}
+                                            `;
+                        ctx.reply(post);
+                    })
+                
+            }
+        });
+});
+
+const stage = new Stage([adminka]);
+
 bot.use(session());
+
+bot.use(stage.middleware());
 
 bot.start(async (ctx) => { 
     // await ctx.reply(`Здраствуйте ${ctx.message.from.first_name}. Выберите сферу ⬇`, Markup
@@ -27,9 +66,14 @@ bot.start(async (ctx) => {
     //             .resize()
     //             .extra()
     // )
-    await ctx.reply(`Здраствуйте ${ctx.message.from.first_name}`);
 
+    await ctx.reply(`Здраствуйте ${ctx.message.from.first_name}`);
+    if (ctx.message.chat.id === 177847305) {
+        await ctx.reply("Вы являетесь администратором системы для Министерства Энергетики Республики Узбекистан");
+    }
 });
+
+bot.hears('да', enter('adminka'));
 
 let list = ['mno', 'minenergy'];
 
