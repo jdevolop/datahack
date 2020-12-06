@@ -45,6 +45,18 @@ class Users {
 			.where({ tg_id });
 	}
 
+	async getUserDbById(id) {
+		return await db
+			.select('id', 'tg_id', 'first_name', 'last_name', 'username', 'photo_url')
+			.from(this.table)
+			.where({ id });
+	}
+
 }
+
+const usr = new Users();
+
+// usr.add({tg_id: 177847305, first_name: "Jamshid", last_name: "Rabbimov", username: "Un004", photo_url: ""})
+// .then(res=> console.log(res));
 
 module.exports = Users;

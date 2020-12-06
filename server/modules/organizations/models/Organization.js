@@ -29,6 +29,23 @@ class Organizations {
 		}
     }
 
+	async add({ name_ru, sphere_id }) {
+		return await db
+			.insert({ name_ru, sphere_id })
+			.from(this.table);
+    }
+    
+    async getOrganizationById(id) {
+		return await db
+			.select('id', 'name_ru', 'opendata_id')
+			.from(this.table)
+			.where({ id });
+	}
 }
+
+const org = new Organizations();
+
+// org.add({ name_ru: "Министерство народного образования Республики Узбекистан", sphere_id: 3 })
+// .then(res=>console.log(res));
 
 module.exports = Organizations;

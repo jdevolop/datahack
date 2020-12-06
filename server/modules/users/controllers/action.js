@@ -3,7 +3,9 @@
 const Users = require("../models/Users");
 const users = new Users();
 const AppError = require("../../../helpers/appError");
+const Admins = require("../../organizations/models/OrganizationAdmins");
 const jwt = require("../../../services/jwt-service");
+const admins = new Admins();    
 
 module.exports = {
     async addUser(ctx) {
@@ -41,11 +43,16 @@ module.exports = {
                 const id = user_[0].id;
                 const authToken = jwt.getToken({ id }, { expiresIn: '20h' });
                 const authLine = `Bearer ${authToken}`;
-    
-                ctx.body = {
+
+                const is_admin = await admins.getAdminById(id);
+                const res = {
                     user_id: id,
                     token: authLine,
                 };
+                if (is_admin.length) {
+                    res['admin'] = true;
+                }
+                ctx.body = res
 
             }
             

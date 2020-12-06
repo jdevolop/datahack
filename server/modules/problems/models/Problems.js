@@ -16,9 +16,9 @@ class Problems {
 			if (!exist) {
 				await db.schema.createTable(TABLE_NAME, function(t) {
                     t.increments().primary();
-                    t.string('name_ru');
-                    t.integer('dataset_id');
-                    t.integer('structure_id');
+                    t.text('description');
+                    t.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
+                    t.integer('sphere_id').references('id').inTable('spheres').notNull().onDelete('cascade');
                     t.timestamps();
 				});
 				return console.log(TABLE_NAME + ' created');
@@ -30,6 +30,25 @@ class Problems {
 		}
     }
 
+
+    async add({ description, user_id, sphere_id }) {
+		return await db
+			.insert({ description, user_id, sphere_id })
+			.from(this.table);
+    }
+    
+    async getProblemById(id) {
+		return await db
+			.select('id', 'description', 'user_id', 'sphere_id')
+			.from(this.table)
+			.where({ id });
+    }
+    
+    async getProblems() {
+		return await db
+			.select('id', 'description', 'user_id', 'sphere_id')
+			.from(this.table);
+	}
 }
 
 module.exports = Problems;

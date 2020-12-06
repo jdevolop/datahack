@@ -1,10 +1,10 @@
 'use strict';
 
-const db = require("../../db");
+const db = require("../../db")
 
-const TABLE_NAME = 'spheres';
+const TABLE_NAME = 'votes';
 
-class Spheres {
+class Votes {
     constructor() {
         this.table = TABLE_NAME;
     }
@@ -16,8 +16,8 @@ class Spheres {
 			if (!exist) {
 				await db.schema.createTable(TABLE_NAME, function(t) {
                     t.increments().primary();
-                    t.string('name_ru');
-                    t.integer('opendata_id');
+                    t.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
+                    t.integer('suggestion_id').references('id').inTable('spheres').notNull().onDelete('cascade');
                     t.timestamps();
 				});
 				return console.log(TABLE_NAME + ' created');
@@ -27,24 +27,21 @@ class Spheres {
 		} catch (e) {
 			return console.error(e);
 		}
-	}
-	
-	async add({ name_ru, opendata_id }) {
+    }
+
+
+    async add({ user_id, suggestion_id }) {
 		return await db
-			.insert({ name_ru, opendata_id })
+			.insert({  user_id, suggestion_id })
 			.from(this.table);
     }
     
-    async getSphereById(id) {
+    async getById(suggestion_id, user_id) {
 		return await db
-			.select('id', 'name_ru', 'opendata_id')
+			.select('id',  'user_id', 'suggestion_id')
 			.from(this.table)
-			.where({ id });
+			.where({ suggestion_id, user_id });
 	}
-
 }
 
-const sp = new Spheres();
-
-
-module.exports = Spheres;
+module.exports = Votes;
